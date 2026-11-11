@@ -445770,6 +445770,13 @@
                       "name": {
                         "type": "string"
                       },
+                      "routingStrategy": {
+                        "type": "string",
+                        "enum": [
+                          "weighted",
+                          "least-tokens"
+                        ]
+                      },
                       "streamTimeoutSeconds": {
                         "nullable": true,
                         "type": "integer",
@@ -446005,6 +446012,7 @@
                       "id",
                       "organizationId",
                       "name",
+                      "routingStrategy",
                       "streamTimeoutSeconds",
                       "timeoutSeconds",
                       "cooldownSeconds",
@@ -446273,6 +446281,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "routingStrategy": {
+                    "type": "string",
+                    "enum": [
+                      "weighted",
+                      "least-tokens"
+                    ]
+                  },
                   "name": {
                     "type": "string",
                     "minLength": 1,
@@ -446455,6 +446470,13 @@
                     },
                     "name": {
                       "type": "string"
+                    },
+                    "routingStrategy": {
+                      "type": "string",
+                      "enum": [
+                        "weighted",
+                        "least-tokens"
+                      ]
                     },
                     "streamTimeoutSeconds": {
                       "nullable": true,
@@ -446679,6 +446701,7 @@
                     "id",
                     "organizationId",
                     "name",
+                    "routingStrategy",
                     "streamTimeoutSeconds",
                     "timeoutSeconds",
                     "cooldownSeconds",
@@ -447259,6 +447282,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "routingStrategy": {
+                    "type": "string",
+                    "enum": [
+                      "weighted",
+                      "least-tokens"
+                    ]
+                  },
                   "name": {
                     "type": "string",
                     "minLength": 1,
@@ -447453,6 +447483,13 @@
                     },
                     "name": {
                       "type": "string"
+                    },
+                    "routingStrategy": {
+                      "type": "string",
+                      "enum": [
+                        "weighted",
+                        "least-tokens"
+                      ]
                     },
                     "streamTimeoutSeconds": {
                       "nullable": true,
@@ -447677,6 +447714,7 @@
                     "id",
                     "organizationId",
                     "name",
+                    "routingStrategy",
                     "streamTimeoutSeconds",
                     "timeoutSeconds",
                     "cooldownSeconds",
