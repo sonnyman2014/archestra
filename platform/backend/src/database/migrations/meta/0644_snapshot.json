@@ -1,5 +1,5 @@
 {
-  "id": "6acbdeb9-e195-4501-a667-76daf81594f0",
+  "id": "909bf760-b963-436c-8bc9-077966e6ff6f",
   "prevId": "c8eb16cd-4f61-4ede-8337-389399599c74",
   "version": "7",
   "dialect": "postgresql",
@@ -20302,6 +20302,22 @@
             }
           ],
           "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "mcp_tool_calls_service_account_id_idx": {
+          "name": "mcp_tool_calls_service_account_id_idx",
+          "columns": [
+            {
+              "expression": "service_account_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "where": "\"mcp_tool_calls\".\"service_account_id\" IS NOT NULL",
           "concurrently": false,
           "method": "btree",
           "with": {}

@@ -1,3 +1,16 @@
+-- COMMIT below persists the DDL before Drizzle records this migration. Replay it
+-- safely if the concurrent build fails; existing rows need no backfill or FK scan.
+ALTER TABLE "mcp_tool_calls" ADD COLUMN IF NOT EXISTS "service_account_id" uuid;--> statement-breakpoint
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conrelid = 'public.mcp_tool_calls'::regclass
+      AND conname = 'mcp_tool_calls_service_account_id_service_accounts_id_fk'
+  ) THEN
+    ALTER TABLE "mcp_tool_calls" ADD CONSTRAINT "mcp_tool_calls_service_account_id_service_accounts_id_fk" FOREIGN KEY ("service_account_id") REFERENCES "public"."service_accounts"("id") ON DELETE set null ON UPDATE no action NOT VALID;
+  END IF;
+END $$;--> statement-breakpoint
 -- Service-account deletion must find its audit rows without scanning all MCP logs.
 -- Leave Drizzle's transaction for the concurrent build; the migration runner
 -- removes invalid leftovers before a retry, and the closing BEGIN restores the batch.
