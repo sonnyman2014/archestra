@@ -858,6 +858,7 @@ export async function createAgentServer(params: {
         runId: runId ?? null,
         authMethod: deriveAuthMethod(tokenAuth) ?? null,
         oauthClientId: tokenAuth?.oauthClientId ?? null,
+        serviceAccountId: tokenAuth?.serviceAccountId ?? null,
         source: tokenAuth?.source ?? null,
       });
       logger.info(
@@ -1163,6 +1164,7 @@ export async function createAgentServer(params: {
               llmToolCallId: tokenAuth?.llmToolCallId ?? null,
               authMethod: deriveAuthMethod(tokenAuth) ?? null,
               oauthClientId: tokenAuth?.oauthClientId ?? null,
+              serviceAccountId: tokenAuth?.serviceAccountId ?? null,
               source: tokenAuth?.source ?? null,
             });
           } catch (dbError) {
@@ -1313,6 +1315,7 @@ export async function createAgentServer(params: {
               llmToolCallId: tokenAuth?.llmToolCallId ?? null,
               authMethod: deriveAuthMethod(tokenAuth) ?? null,
               oauthClientId: tokenAuth?.oauthClientId ?? null,
+              serviceAccountId: tokenAuth?.serviceAccountId ?? null,
               source: tokenAuth?.source ?? null,
             });
           } catch (dbError) {

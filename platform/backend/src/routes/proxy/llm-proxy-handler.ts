@@ -88,6 +88,7 @@ import {
   UserTokenModel,
 } from "@/models";
 import type { LimitViolationResponse } from "@/models/limit";
+import OAuthClientModel from "@/models/oauth-client";
 import ProxyRequestContextModel, {
   type ProxyRequestState,
 } from "@/models/proxy-request-context";
@@ -174,6 +175,7 @@ import {
 } from "@/types";
 import type { AttributionLabels } from "@/types/attribution-label";
 import type { AutoRoutingRequestContext } from "@/types/auto-routing";
+import { ManagedOauthClientMetadataSchema } from "@/types/managed-oauth-client";
 import { asRecord } from "@/utils/as-record";
 import { clientDisconnectSignal } from "@/utils/client-disconnect-signal";
 import { repairLoneSurrogates } from "@/utils/lone-surrogates";
@@ -1335,6 +1337,26 @@ async function handleObservedLLMProxy<
           ? "personal_token"
           : "provider_key";
   }
+
+  // A2A uses the agent's provider credential. Its proof-bound execution
+  // reference names the application for audit only; it must not replace the
+  // credential identity used by authorization, billing, or proxy limits.
+  const a2aClient = oauthExecution
+    ? await OAuthClientModel.findByClientId(oauthExecution.execution.clientId)
+    : null;
+  const a2aClientMetadata = a2aClient
+    ? ManagedOauthClientMetadataSchema.safeParse(a2aClient.metadata).data
+    : undefined;
+  const attributedOAuthApp =
+    authenticatedApp ??
+    (a2aClient &&
+    a2aClientMetadata?.organizationId === resolvedAgent.organizationId
+      ? {
+          id: a2aClient.id,
+          name: a2aClient.name ?? a2aClient.clientId,
+          clientId: a2aClient.clientId,
+        }
+      : undefined);
 
   // Encrypted chat sessions: interaction rows keep all usage/cost/session
   // metadata, but their content-bearing fields are encrypted under the
@@ -2498,8 +2520,8 @@ async function handleObservedLLMProxy<
                 sessionSource,
                 source,
                 authMethod,
-                authenticatedAppId: authenticatedApp?.id,
-                authenticatedAppName: authenticatedApp?.name,
+                authenticatedAppId: attributedOAuthApp?.id,
+                authenticatedAppName: attributedOAuthApp?.name,
                 billingTeamId,
                 type: provider.interactionType,
                 request:
@@ -2752,7 +2774,7 @@ async function handleObservedLLMProxy<
       authMethod,
       billingMode,
       getBillingMode: () => billingMode,
-      authenticatedApp,
+      authenticatedApp: attributedOAuthApp,
       billingTeamId,
       userId,
       serviceAccountId,
@@ -2865,8 +2887,8 @@ async function handleObservedLLMProxy<
         sessionSource,
         source,
         authMethod,
-        authenticatedAppId: authenticatedApp?.id,
-        authenticatedAppName: authenticatedApp?.name,
+        authenticatedAppId: attributedOAuthApp?.id,
+        authenticatedAppName: attributedOAuthApp?.name,
         billingTeamId,
         type: provider.interactionType,
         request: withClaudeSubagentMetadata(

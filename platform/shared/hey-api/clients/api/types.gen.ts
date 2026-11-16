@@ -111437,6 +111437,7 @@ export type GetMcpToolCallsResponses = {
             } | null;
             toolResult: unknown;
             userId: string | null;
+            serviceAccountId: string | null;
             runId: string | null;
             sessionId: string | null;
             llmToolCallId: string | null;
@@ -111564,6 +111565,7 @@ export type GetMcpToolCallResponses = {
         } | null;
         toolResult: unknown;
         userId: string | null;
+        serviceAccountId: string | null;
         runId: string | null;
         sessionId: string | null;
         llmToolCallId: string | null;
