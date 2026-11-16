@@ -4516,6 +4516,13 @@
       "when": 1794855274076,
       "tag": "0644_foamy_norman_osborn",
       "breakpoints": true
+    },
+    {
+      "idx": 645,
+      "version": "7",
+      "when": 1794858203087,
+      "tag": "0645_bitter_venom",
+      "breakpoints": true
     }
   ]
 }
