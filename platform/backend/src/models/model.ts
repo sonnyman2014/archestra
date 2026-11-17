@@ -1226,8 +1226,8 @@ class ModelModel {
     if (model.longContextThreshold !== null) return model.longContextThreshold;
     if (model.providerPricing) return null;
     const schedule =
-      model.syncedLongContextPricing ??
-      resolveVendorPublishedPriceSchedule(model);
+      resolveVendorPublishedPriceSchedule(model) ??
+      model.syncedLongContextPricing;
     if (!schedule) return null;
     const short = ModelModel.getEffectivePricing(
       model,
@@ -1291,7 +1291,9 @@ class ModelModel {
           })
         : null;
     const synced =
-      !model?.providerPricing && model?.longContextThreshold == null
+      !schedule &&
+      !model?.providerPricing &&
+      model?.longContextThreshold == null
         ? model?.syncedLongContextPricing
         : null;
     const useSynced =
