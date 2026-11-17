@@ -69,7 +69,7 @@ import {
 } from "./mcp-reinstall";
 
 describe("mcp-reinstall", () => {
-  test("resource edits require reinstall and invalidate a shared pod", () => {
+  test("tier edits require reinstall and invalidate a shared pod", () => {
     const previous = {
       serverType: "local",
       localConfig: { command: "node" },
@@ -78,7 +78,7 @@ describe("mcp-reinstall", () => {
       ...previous,
       localConfig: {
         ...previous.localConfig,
-        resources: { cpuRequest: 0.25, memoryRequestMiB: 128 },
+        runtimeTier: "S",
       },
     } as InternalMcpCatalog;
     expect(manualReinstallReason(previous, next)).toBe("restart");
@@ -91,7 +91,7 @@ describe("mcp-reinstall", () => {
     expect(
       manualReinstallReason(previous, {
         ...previous,
-        localConfig: { command: "node", resources: { cpuLimit: null } },
+        localConfig: { command: "node", runtimeTier: undefined },
       }),
     ).toBeNull();
   });
