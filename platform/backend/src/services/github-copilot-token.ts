@@ -32,6 +32,7 @@ import {
 // An hourly workflow proposes updates from stable upstream releases.
 const GITHUB_COPILOT_VSCODE_VERSION = "1.146.0";
 const GITHUB_COPILOT_CHAT_VERSION = "0.43.0";
+export const GITHUB_COPILOT_API_VERSION = "2025-04-01";
 
 /**
  * Editor-identity headers the Copilot endpoints require on every request.
@@ -44,7 +45,7 @@ const GITHUB_COPILOT_HEADERS: Record<string, string> = {
   "editor-version": `vscode/${GITHUB_COPILOT_VSCODE_VERSION}`,
   "editor-plugin-version": `copilot-chat/${GITHUB_COPILOT_CHAT_VERSION}`,
   "user-agent": `GitHubCopilotChat/${GITHUB_COPILOT_CHAT_VERSION}`,
-  "x-github-api-version": "2025-04-01",
+  "x-github-api-version": GITHUB_COPILOT_API_VERSION,
 };
 
 // Not in the internal-helpers section: consts are not hoisted, and this one is
