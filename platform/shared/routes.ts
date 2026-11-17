@@ -493,6 +493,9 @@ export const RouteId = {
   GithubCopilotMessagesWithDefaultAgent:
     "githubCopilotMessagesWithDefaultAgent",
   GithubCopilotMessagesWithAgent: "githubCopilotMessagesWithAgent",
+  GithubCopilotCountTokensWithDefaultAgent:
+    "githubCopilotCountTokensWithDefaultAgent",
+  GithubCopilotCountTokensWithAgent: "githubCopilotCountTokensWithAgent",
   GithubCopilotResponsesWithDefaultAgent:
     "githubCopilotResponsesWithDefaultAgent",
   GithubCopilotResponsesWithAgent: "githubCopilotResponsesWithAgent",
