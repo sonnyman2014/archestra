@@ -996,7 +996,7 @@ const internalMcpCatalogRoutes: FastifyPluginAsyncZod = async (fastify) => {
         requested: restBody.deploymentSpecYaml,
         requestedLocalConfig: restBody.localConfig,
       });
-      if (restBody.localConfig && !restBody.deploymentSpecYaml) {
+      if (restBody.localConfig) {
         await InternalMcpCatalogModel.resolveRuntimeResources(
           restBody.localConfig,
           request.organizationId,
@@ -1666,11 +1666,7 @@ const internalMcpCatalogRoutes: FastifyPluginAsyncZod = async (fastify) => {
         restBody.localConfig === undefined
           ? originalCatalogItem.localConfig
           : restBody.localConfig;
-      const effectiveDeploymentYaml =
-        restBody.deploymentSpecYaml === undefined
-          ? originalCatalogItem.deploymentSpecYaml
-          : restBody.deploymentSpecYaml;
-      if (effectiveLocalConfig && !effectiveDeploymentYaml) {
+      if (effectiveLocalConfig) {
         await InternalMcpCatalogModel.resolveRuntimeResources(
           effectiveLocalConfig,
           request.organizationId,
