@@ -3159,9 +3159,11 @@ function McpRuntimeTierField({
           <FormLabel>Runtime tier</FormLabel>
           <Select
             value={
-              field.value
-                ? `tier:${findAgentRuntimeTier(tiers, field.value)?.name ?? field.value}`
-                : "default"
+              !resolved
+                ? ""
+                : field.value
+                  ? `tier:${findAgentRuntimeTier(tiers, field.value)?.name ?? field.value}`
+                  : "default"
             }
             disabled={!resolved}
             onValueChange={(tier) =>
@@ -3175,11 +3177,13 @@ function McpRuntimeTierField({
             </FormControl>
             <SelectContent>
               <SelectItem value="default">Deployment defaults</SelectItem>
-              {field.value && !findAgentRuntimeTier(tiers, field.value) && (
-                <SelectItem value={`tier:${field.value}`}>
-                  {field.value} (unavailable)
-                </SelectItem>
-              )}
+              {resolved &&
+                field.value &&
+                !findAgentRuntimeTier(tiers, field.value) && (
+                  <SelectItem value={`tier:${field.value}`}>
+                    {field.value} (unavailable)
+                  </SelectItem>
+                )}
               {tiers.map((tier) => (
                 <SelectItem key={tier.name} value={`tier:${tier.name}`}>
                   {tier.name}:{" "}
