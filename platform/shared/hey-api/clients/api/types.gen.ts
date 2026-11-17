@@ -106905,6 +106905,13 @@ export type GetModelsWithApiKeysResponses = {
         customPricePerMillionOutput: string | null;
         customPricePerMillionCacheRead: string | null;
         customPricePerMillionCacheWrite: string | null;
+        syncedLongContextPricing: {
+            threshold: number;
+            pricePerMillionInput: string;
+            pricePerMillionOutput: string;
+            pricePerMillionCacheRead: string | null;
+            pricePerMillionCacheWrite: string | null;
+        } | null;
         longContextThreshold: number | null;
         longContextPricePerMillionInput: string | null;
         longContextPricePerMillionOutput: string | null;
@@ -107491,6 +107498,13 @@ export type UpdateModelResponses = {
         customPricePerMillionOutput: string | null;
         customPricePerMillionCacheRead: string | null;
         customPricePerMillionCacheWrite: string | null;
+        syncedLongContextPricing: {
+            threshold: number;
+            pricePerMillionInput: string;
+            pricePerMillionOutput: string;
+            pricePerMillionCacheRead: string | null;
+            pricePerMillionCacheWrite: string | null;
+        } | null;
         longContextThreshold: number | null;
         longContextPricePerMillionInput: string | null;
         longContextPricePerMillionOutput: string | null;

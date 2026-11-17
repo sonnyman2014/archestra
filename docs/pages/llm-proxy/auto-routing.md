@@ -3,7 +3,7 @@ title: Auto Routing
 description: Create auto routers that pick a fast, normal, or smart model for each session of agents, chats and apps, within a daily budget
 order: 6
 beta: "Set [`ARCHESTRA_AUTO_ROUTING_ENABLED=true`](/docs/admin/deployment/configuration#ARCHESTRA_AUTO_ROUTING_ENABLED) to turn it on."
-lastUpdated: 2026-11-11
+lastUpdated: 2026-11-17
 ---
 
 <!-- Renaming/deleting this file? Add a redirect in docs/redirects.json. -->
@@ -96,7 +96,7 @@ The page shows estimated savings against the smart model: what the same tokens w
 
 ## Long-Context Prices
 
-Some models charge more for long prompts. On a model's settings, add a threshold and four long-context prices. Prompts above the threshold use them. This applies to all traffic of that model, not only auto routing.
+Long prompts can cross a model's [long-context pricing threshold](/docs/llm-proxy/costs-and-limits#long-context-prices). Synced provider tiers and your custom overrides apply to all traffic of that model, not only auto routing.
 
 ## What to Know
 

@@ -592,6 +592,7 @@ class ModelModel {
             completionPricePerToken: data.completionPricePerToken,
             cacheReadPricePerToken: data.cacheReadPricePerToken,
             cacheWritePricePerToken: data.cacheWritePricePerToken,
+            syncedLongContextPricing: data.syncedLongContextPricing,
             embeddingDimensions: sql`COALESCE(${schema.modelsTable.embeddingDimensions}, excluded.embedding_dimensions)`,
             // Display-only provider metadata (not user-editable): prefer the fresh
             // synced value so changed Ollama defaults show up, keeping the last
@@ -688,6 +689,7 @@ class ModelModel {
               completionPricePerToken: sql`excluded.completion_price_per_token`,
               cacheReadPricePerToken: sql`excluded.cache_read_price_per_token`,
               cacheWritePricePerToken: sql`excluded.cache_write_price_per_token`,
+              syncedLongContextPricing: sql`excluded.synced_long_context_pricing`,
               embeddingDimensions: sql`COALESCE(${schema.modelsTable.embeddingDimensions}, excluded.embedding_dimensions)`,
               // Display-only provider metadata (not user-editable): prefer the
               // fresh synced value so changed Ollama defaults show up, keeping
@@ -784,6 +786,7 @@ class ModelModel {
               completionPricePerToken: sql`excluded.completion_price_per_token`,
               cacheReadPricePerToken: sql`excluded.cache_read_price_per_token`,
               cacheWritePricePerToken: sql`excluded.cache_write_price_per_token`,
+              syncedLongContextPricing: sql`excluded.synced_long_context_pricing`,
               embeddingDimensions: sql`excluded.embedding_dimensions`,
               defaultParameters: sql`excluded.default_parameters`,
               customPricePerMillionInput: sql`NULL`,
@@ -1185,6 +1188,7 @@ class ModelModel {
       completionPricePerToken: string | null;
       cacheReadPricePerToken: string | null;
       cacheWritePricePerToken: string | null;
+      syncedLongContextPricing: Model["syncedLongContextPricing"];
       contextLength: number | null;
       outputLength: number | null;
       supportsToolCalling: boolean | null;
@@ -1221,7 +1225,9 @@ class ModelModel {
   static getLongContextThreshold(model: ProviderPricedModel): number | null {
     if (model.longContextThreshold !== null) return model.longContextThreshold;
     if (model.providerPricing) return null;
-    const schedule = resolveVendorPublishedPriceSchedule(model);
+    const schedule =
+      model.syncedLongContextPricing ??
+      resolveVendorPublishedPriceSchedule(model);
     if (!schedule) return null;
     const short = ModelModel.getEffectivePricing(
       model,
@@ -1284,14 +1290,29 @@ class ModelModel {
             modelId: model?.modelId ?? modelId ?? "",
           })
         : null;
-    const published = schedule
-      ? isLongContextPrompt(
-          model?.longContextThreshold == null ? schedule.threshold : null,
-          promptTokens,
-        )
-        ? schedule.long
-        : schedule.short
-      : undefined;
+    const synced =
+      !model?.providerPricing && model?.longContextThreshold == null
+        ? model?.syncedLongContextPricing
+        : null;
+    const useSynced =
+      synced && isLongContextPrompt(synced.threshold, promptTokens);
+    const perToken = (price: string | null) =>
+      price === null ? null : String(Number(price) / 1_000_000);
+    const published = useSynced
+      ? {
+          promptPricePerToken: perToken(synced.pricePerMillionInput),
+          completionPricePerToken: perToken(synced.pricePerMillionOutput),
+          cacheReadPricePerToken: perToken(synced.pricePerMillionCacheRead),
+          cacheWritePricePerToken: perToken(synced.pricePerMillionCacheWrite),
+        }
+      : schedule && !synced
+        ? isLongContextPrompt(
+            model?.longContextThreshold == null ? schedule.threshold : null,
+            promptTokens,
+          )
+          ? schedule.long
+          : schedule.short
+        : undefined;
     const base = ModelModel.getEffectiveBasePricing(
       model,
       modelId,
@@ -1314,7 +1335,11 @@ class ModelModel {
             Number(instance.completionPricePerToken) * 1_000_000,
           )
       : base.pricePerMillionOutput;
-    const source = useInstance ? "provider" : base.source;
+    const source = useInstance
+      ? "provider"
+      : useSynced && base.source === "provider"
+        ? "models_dev"
+        : base.source;
     const cache = ModelModel.getEffectiveCachePricing(
       model,
       pricePerMillionInput,
@@ -1322,9 +1347,28 @@ class ModelModel {
       published,
     );
 
+    // A missing published cache direction is unknown, not an inferred discount.
+    if (useSynced) {
+      if (
+        synced.pricePerMillionCacheRead === null &&
+        model?.customPricePerMillionCacheRead == null
+      )
+        cache.pricePerMillionCacheRead = null;
+      if (
+        synced.pricePerMillionCacheWrite === null &&
+        model?.customPricePerMillionCacheWrite == null
+      )
+        cache.pricePerMillionCacheWrite = null;
+      if (
+        cache.pricePerMillionCacheRead === null &&
+        cache.pricePerMillionCacheWrite === null
+      )
+        cache.cacheSource = null;
+    }
+
     const cacheSource =
       cache.cacheSource === "models_dev" &&
-      (model?.providerPricing || published)
+      (model?.providerPricing || (published && !useSynced))
         ? "provider"
         : cache.cacheSource;
     if (
