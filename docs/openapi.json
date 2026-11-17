@@ -361320,6 +361320,35 @@
                               "IfNotPresent",
                               "Never"
                             ]
+                          },
+                          "resources": {
+                            "type": "object",
+                            "properties": {
+                              "cpuRequest": {
+                                "type": "number",
+                                "minimum": 0.001,
+                                "multipleOf": 0.001
+                              },
+                              "cpuLimit": {
+                                "nullable": true,
+                                "type": "number",
+                                "minimum": 0.001,
+                                "multipleOf": 0.001
+                              },
+                              "memoryRequestMiB": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "maximum": 9007199254740991
+                              },
+                              "memoryLimitMiB": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "additionalProperties": false
                           }
                         },
                         "additionalProperties": false
@@ -362432,6 +362461,34 @@
                           "IfNotPresent",
                           "Never"
                         ]
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "cpuRequest": {
+                            "type": "number",
+                            "minimum": 0.001,
+                            "multipleOf": 0.001
+                          },
+                          "cpuLimit": {
+                            "nullable": true,
+                            "type": "number",
+                            "minimum": 0.001,
+                            "multipleOf": 0.001
+                          },
+                          "memoryRequestMiB": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "maximum": 9007199254740991
+                          },
+                          "memoryLimitMiB": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "maximum": 9007199254740991
+                          }
+                        }
                       }
                     }
                   },
@@ -363221,6 +363278,35 @@
                             "IfNotPresent",
                             "Never"
                           ]
+                        },
+                        "resources": {
+                          "type": "object",
+                          "properties": {
+                            "cpuRequest": {
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "cpuLimit": {
+                              "nullable": true,
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "memoryRequestMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            },
+                            "memoryLimitMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       },
                       "additionalProperties": false
@@ -367066,6 +367152,35 @@
                             "IfNotPresent",
                             "Never"
                           ]
+                        },
+                        "resources": {
+                          "type": "object",
+                          "properties": {
+                            "cpuRequest": {
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "cpuLimit": {
+                              "nullable": true,
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "memoryRequestMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            },
+                            "memoryLimitMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       },
                       "additionalProperties": false
@@ -368115,6 +368230,34 @@
                           "IfNotPresent",
                           "Never"
                         ]
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "cpuRequest": {
+                            "type": "number",
+                            "minimum": 0.001,
+                            "multipleOf": 0.001
+                          },
+                          "cpuLimit": {
+                            "nullable": true,
+                            "type": "number",
+                            "minimum": 0.001,
+                            "multipleOf": 0.001
+                          },
+                          "memoryRequestMiB": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "maximum": 9007199254740991
+                          },
+                          "memoryLimitMiB": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "maximum": 9007199254740991
+                          }
+                        }
                       }
                     }
                   },
@@ -368759,6 +368902,35 @@
                             "IfNotPresent",
                             "Never"
                           ]
+                        },
+                        "resources": {
+                          "type": "object",
+                          "properties": {
+                            "cpuRequest": {
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "cpuLimit": {
+                              "nullable": true,
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "memoryRequestMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            },
+                            "memoryLimitMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       },
                       "additionalProperties": false
@@ -371607,6 +371779,35 @@
                               "IfNotPresent",
                               "Never"
                             ]
+                          },
+                          "resources": {
+                            "type": "object",
+                            "properties": {
+                              "cpuRequest": {
+                                "type": "number",
+                                "minimum": 0.001,
+                                "multipleOf": 0.001
+                              },
+                              "cpuLimit": {
+                                "nullable": true,
+                                "type": "number",
+                                "minimum": 0.001,
+                                "multipleOf": 0.001
+                              },
+                              "memoryRequestMiB": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "maximum": 9007199254740991
+                              },
+                              "memoryLimitMiB": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "additionalProperties": false
                           }
                         },
                         "additionalProperties": false
@@ -372650,6 +372851,35 @@
                             "IfNotPresent",
                             "Never"
                           ]
+                        },
+                        "resources": {
+                          "type": "object",
+                          "properties": {
+                            "cpuRequest": {
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "cpuLimit": {
+                              "nullable": true,
+                              "type": "number",
+                              "minimum": 0.001,
+                              "multipleOf": 0.001
+                            },
+                            "memoryRequestMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            },
+                            "memoryLimitMiB": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "maximum": 9007199254740991
+                            }
+                          },
+                          "additionalProperties": false
                         }
                       },
                       "additionalProperties": false

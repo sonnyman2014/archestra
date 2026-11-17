@@ -91771,6 +91771,12 @@ export type GetInternalMcpCatalogResponses = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig: {
             command?: string | null;
@@ -91946,6 +91952,12 @@ export type CreateInternalMcpCatalogItemData = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig?: {
             command?: string | null;
@@ -92182,6 +92194,12 @@ export type CreateInternalMcpCatalogItemResponses = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig: {
             command?: string | null;
@@ -93278,6 +93296,12 @@ export type GetInternalMcpCatalogItemResponses = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig: {
             command?: string | null;
@@ -93441,6 +93465,12 @@ export type UpdateInternalMcpCatalogItemData = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig?: {
             command?: string | null;
@@ -93658,6 +93688,12 @@ export type UpdateInternalMcpCatalogItemResponses = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig: {
             command?: string | null;
@@ -94367,6 +94403,12 @@ export type ListPendingImageApprovalCatalogItemsResponses = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig: {
             command?: string | null;
@@ -94608,6 +94650,12 @@ export type ApproveCatalogItemImageResponses = {
                 email?: string;
             }>;
             imagePullPolicy?: 'Always' | 'IfNotPresent' | 'Never';
+            resources?: {
+                cpuRequest?: number;
+                cpuLimit?: number | null;
+                memoryRequestMiB?: number;
+                memoryLimitMiB?: number;
+            };
         } | null;
         desktopConfig: {
             command?: string | null;
