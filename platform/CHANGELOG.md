@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.5.0-rc.39](https://github.com/archestra-ai/archestra/compare/platform-v1.5.0-rc.38...platform-v1.5.0-rc.39) (2026-11-18)
+
+
+### Features
+
+* **guardrails:** lay the Policy page out as an editor with a file explorer ([#10845](https://github.com/archestra-ai/archestra/issues/10845)) ([5e15463](https://github.com/archestra-ai/archestra/commit/5e15463e9a5a33701bbe19eb95add4efa97cb552))
+* **mcp:** bulk revoke credentials on the MCP server page ([#10843](https://github.com/archestra-ai/archestra/issues/10843)) ([a74a87e](https://github.com/archestra-ai/archestra/commit/a74a87e3fb9760d249ee2b7f45011b2481c39e20))
+
+
+### Bug Fixes
+
+* **appearance:** show logos that are SVGs without a width and height ([#10840](https://github.com/archestra-ai/archestra/issues/10840)) ([5dd480b](https://github.com/archestra-ai/archestra/commit/5dd480b05666e744603fc8014b2175a9c2b19376))
+* **chat:** keep the assistant's reply when a tool call needs re-authentication ([#10841](https://github.com/archestra-ai/archestra/issues/10841)) ([277b72a](https://github.com/archestra-ai/archestra/commit/277b72a6a17fbc577afc426a56346b42be66ff8b))
+* **chat:** recheck permissions before refusing a viewer whose role changed ([#10842](https://github.com/archestra-ai/archestra/issues/10842)) ([fd5e7ca](https://github.com/archestra-ai/archestra/commit/fd5e7ca61ea9ed55e6e30a01071e43797d500383))
+* **mcp:** keep backend processes agreed on a local MCP server's transport after an edit ([#10844](https://github.com/archestra-ai/archestra/issues/10844)) ([661cf4c](https://github.com/archestra-ai/archestra/commit/661cf4c979f491f2f0c047c542858c6633225bdf))
+* **mcp:** let a service account install an MCP server ([#10837](https://github.com/archestra-ai/archestra/issues/10837)) ([dc7b264](https://github.com/archestra-ai/archestra/commit/dc7b26443335fd982207832a8cbfefdce01bc490))
+* **openappa:** ask the annotator model about fetched URLs ([#10829](https://github.com/archestra-ai/archestra/issues/10829)) ([dbaef7c](https://github.com/archestra-ai/archestra/commit/dbaef7c6e193ce929d6adf93de7991a78b1b9c92))
+* **openappa:** hold a Claude Code stop while a call it did not answer still runs ([#10820](https://github.com/archestra-ai/archestra/issues/10820)) ([29abe7f](https://github.com/archestra-ai/archestra/commit/29abe7f49c53aff4242c3bf798a3714641b96d74))
+* **openappa:** keep Claude Code side requests from ending a turn or subagent ([#10826](https://github.com/archestra-ai/archestra/issues/10826)) ([42946e1](https://github.com/archestra-ai/archestra/commit/42946e1454c0d11d2838563f75ac766352c3ef96))
+* **openappa:** warn when a stop is held on running calls ([#10833](https://github.com/archestra-ai/archestra/issues/10833)) ([9f76e27](https://github.com/archestra-ai/archestra/commit/9f76e276302aed48ea0b6acb99ae1eb699e080d3))
+
+
+### Miscellaneous Chores
+
+* unblock Rust dependency policy and a network-sensitive frontend test ([#10822](https://github.com/archestra-ai/archestra/issues/10822)) ([ea1ee6e](https://github.com/archestra-ai/archestra/commit/ea1ee6e23aa4170cff27f7f9373c1f6b7eac1473))
+* update client versions ([#10839](https://github.com/archestra-ai/archestra/issues/10839)) ([6525989](https://github.com/archestra-ai/archestra/commit/652598945526c44f9939ac11a68f71a24c41b34d))
+
 ## [1.5.0-rc.38](https://github.com/archestra-ai/archestra/compare/platform-v1.5.0-rc.37...platform-v1.5.0-rc.38) (2026-11-17)
 
 
