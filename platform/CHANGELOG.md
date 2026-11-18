@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.4.36](https://github.com/archestra-ai/archestra/compare/platform-v1.4.35...platform-v1.4.36) (2026-11-18)
+
+
+### Features
+
+* **mcp:** bulk revoke credentials on the MCP server page (backport release/1.4) ([#10848](https://github.com/archestra-ai/archestra/issues/10848)) ([4876c7d](https://github.com/archestra-ai/archestra/commit/4876c7d858b3b17e5eef7ecdcf02cbfd68e2bfe3))
+
+
+### Bug Fixes
+
+* **appearance:** show logos that are SVGs without a width and height (backport release/1.4) ([#10846](https://github.com/archestra-ai/archestra/issues/10846)) ([0b22a17](https://github.com/archestra-ai/archestra/commit/0b22a17e9b6311875bc9da1af9da6d5853edaa74))
+* **chat:** keep the assistant's reply when a tool needs re-authentication (backport release/1.4) ([#10847](https://github.com/archestra-ai/archestra/issues/10847)) ([91c8ac1](https://github.com/archestra-ai/archestra/commit/91c8ac1e90dcd03470cd72a5a42bfb663e2767b2))
+* **chat:** recheck permissions before refusing a viewer whose role changed (backport release/1.4) ([#10851](https://github.com/archestra-ai/archestra/issues/10851)) ([ebc0d7f](https://github.com/archestra-ai/archestra/commit/ebc0d7f53aece2bfb6a427a9c053c5e4c4b6cd52))
+* **mcp:** keep backend processes agreed on a local MCP server's transport aft (backport release/1.4) ([#10849](https://github.com/archestra-ai/archestra/issues/10849)) ([e3102dc](https://github.com/archestra-ai/archestra/commit/e3102dc44c802ec02490dd3c20eaabb185c39417))
+
 ## [1.4.35](https://github.com/archestra-ai/archestra/compare/platform-v1.4.34...platform-v1.4.35) (2026-11-17)
 
 
